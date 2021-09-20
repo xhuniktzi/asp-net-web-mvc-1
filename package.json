@@ -1,0 +1,15 @@
+{
+  "name": "asp-net-web-mvc-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.1.1",
+    "normalize.css": "^8.0.1"
+  }
+}
