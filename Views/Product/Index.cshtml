@@ -1,0 +1,68 @@
+﻿@model IEnumerable<asp_net_web_mvc_1.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1 class="title has-text-centered">Productos</h1>
+
+<div class="box columns is-vcentered">
+    <p class="column is-half has-text-centered">Actualmente @Model.Count() productos en el sistema.</p>
+    <p class="column is-half has-text-centered">
+        @Html.ActionLink("¿Desea crear un producto nuevo?", "Create", "Product", null, new { @class = "button is-success is-rounded" })
+    </p>
+</div>
+
+<div class="table-container">
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        <thead>
+        <tr class="has-text-centered">
+            <th>
+                Codigo
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Descripción
+            </th>
+            <th>
+                Precio
+            </th>
+            <th>
+                Cantidad Minima
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Min_Quantity)
+                    </td>
+                    <td>
+                        <div class="buttons">
+                        @Html.ActionLink("Editar", "Edit", "Product", new { id = item.Product_Id }, new { @class="button is-small is-link is-rounded"})
+                        @Html.ActionLink("Ver detalles", "Details", "Product", new { id = item.Product_Id }, new { @class = "button is-small is-info is-rounded" })
+                        @Html.ActionLink("Borrar", "Delete", "Product", new { id = item.Product_Id }, new { @class = "button is-small is-danger is-rounded" })
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

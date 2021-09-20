@@ -1,12 +1,41 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+    @Styles.Render("~/Styles/css")
 </head>
 <body>
-    @RenderBody()
+    <div class="container">
+        <header>
+            <nav class="navbar has-shadow has-text-weight-bold mb-3" role="navigation" aria-label="navigation">
+                <div class="navbar-brand">
+                    @Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "navbar-item" })
+                    @*<a class="navbar-item" href="https://bulma.io">
+                            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+                        </a>*@
+                    <a role="button" id="burgerIcon" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="mainNavbar">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div id="mainNavbar" class="navbar-menu">
+                    <div class="navbar-end">
+                        @Html.ActionLink("Productos", "Index", "Product", null, new { @class = "navbar-item" })
+                        @Html.ActionLink("Clientes", "Index", "Product", null, new { @class = "navbar-item" })
+                        @Html.ActionLink("Facturas", "Index", "Product", null, new { @class = "navbar-item" })
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>
+            @RenderBody()
+        </main>
+    </div>
+    @Scripts.Render("~/Scripts/js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

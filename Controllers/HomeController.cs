@@ -7,6 +7,6 @@ namespace asp_net_web_mvc_1.Controllers
         public ActionResult Index()
         {
             return View();
-        }
+        } 
     }
 }
