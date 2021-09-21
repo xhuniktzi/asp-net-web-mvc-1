@@ -41,6 +41,7 @@ namespace asp_net_web_mvc_1.Controllers
         {
             if (ModelState.IsValid)
             {
+                TempData["Success"] = $"Producto {product.Code} - {product.Name} creado correctamente";
                 _productRepo.CreateProduct(product);
                 return RedirectToAction("Details", new { code = product.Code });
             }
@@ -65,6 +66,7 @@ namespace asp_net_web_mvc_1.Controllers
             if (ModelState.IsValid)
             {
                 _productRepo.UpdateProduct(codeProduct, product);
+                TempData["Success"] = $"Producto {product.Code} - {product.Name} actualizado correctamente";
                 return RedirectToAction("Details", new { code=product.Code });
             }
             return View(product);
@@ -86,6 +88,7 @@ namespace asp_net_web_mvc_1.Controllers
         public ActionResult Delete(string code, FormCollection form)
         {
             _productRepo.DeleteProduct(code);
+            TempData["Success"] = $"Producto eliminado correctamente";
             return RedirectToAction("Index");
         }
     }

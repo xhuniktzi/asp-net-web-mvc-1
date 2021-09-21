@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using asp_net_web_mvc_1.Models;
-using System.Net;
-using System.IO;
 using Newtonsoft.Json;
 
 namespace asp_net_web_mvc_1.Repository
