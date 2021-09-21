@@ -43,6 +43,20 @@ namespace asp_net_web_mvc_1.Repository
 
         }
 
+        public static void ExecPut(string url, string data, string contentType)
+        {
+            var req = (HttpWebRequest)WebRequest.Create(url);
+            req.Method = "PUT";
+            req.ContentType = contentType;
+
+            var byteData = Encoding.UTF8.GetBytes(data);
+            req.ContentLength = byteData.Length;
+
+            var dataStream = req.GetRequestStream();
+            dataStream.Write(byteData, 0, byteData.Length);
+            dataStream.Close();
+            req.GetResponse();
+        }
         public static void ExecDelete(string url)
         {
             var req = (HttpWebRequest)WebRequest.Create(url);

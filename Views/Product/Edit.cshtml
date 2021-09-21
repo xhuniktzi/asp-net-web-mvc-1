@@ -1,0 +1,91 @@
+﻿@model asp_net_web_mvc_1.Models.Product
+
+@{
+    ViewBag.Title = "Editar Producto";
+}
+<h1 class="title has-text-centered">Editar Producto</h1>
+@using (Html.BeginForm("Edit", "Product", new { codeProduct = Model.Code}, FormMethod.Post, new { id = "ProductForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="columns is-centered">
+        <div class="card column">
+            <div class="card-content">
+                @Html.ValidationSummary(true, "", new { @class = "help has-text-danger" })
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        @Html.LabelFor(model => model.Code, "Codigo:", new { @class = "label" })
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control is-expanded">
+                                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "input is-info", placeholder = "ABC-123" } })
+                                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "help has-text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        @Html.LabelFor(model => model.Name, "Nombre:", new { @class = "label" })
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control is-expanded">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input is-info", placeholder = "Botella de Agua" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "help has-text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        @Html.LabelFor(model => model.Description, "Descripción:", new { @class = "label" })
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control is-expanded">
+                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "input is-info", placeholder = "Botella de 250 ml" } })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "help has-text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        @Html.LabelFor(model => model.Price, "Precio:", new { @class = "label" })
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control is-expanded">
+                                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { type = "number", @class = "input is-info", placeholder = "150.00" } })
+                                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "help has-text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        @Html.LabelFor(model => model.Min_Quantity, "Cantidad Minima:", new { @class = "label" })
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control is-expanded">
+                                @Html.EditorFor(model => model.Min_Quantity, new { htmlAttributes = new { type = "number", @class = "input is-info", placeholder = "10" } })
+                                @Html.ValidationMessageFor(model => model.Min_Quantity, "", new { @class = "help has-text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-footer">
+                <a href="#" onclick="document.getElementById('ProductForm').submit()" class="card-footer-item has-text-weight-bold">Editar Producto</a>
+                @Html.ActionLink("Regresar a la lista", "Index", "Product", null, new { @class = "card-footer-item has-text-weight-bold" })
+            </div>
+        </div>
+    </div>
+}    

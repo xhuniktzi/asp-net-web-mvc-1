@@ -35,5 +35,12 @@ namespace asp_net_web_mvc_1.Repository
             var url = $"{Properties.Settings.Default.API}/products";
             return JsonConvert.DeserializeObject<IEnumerable<Product>>(ConnectDatabase.ExecGet(url));
         }
+
+        public void UpdateProduct(string code, Product product)
+        {
+            var url = $"{Properties.Settings.Default.API}/products/{Uri.EscapeDataString(code)}";
+            var data = JsonConvert.SerializeObject(product);
+            ConnectDatabase.ExecPut(url, data, "application/json");
+        }
     }
 }

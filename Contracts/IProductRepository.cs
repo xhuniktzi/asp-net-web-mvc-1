@@ -9,5 +9,6 @@ namespace asp_net_web_mvc_1.Contracts
         Product FindByCode(string code);
         Product CreateProduct(Product product);
         void DeleteProduct(string code);
+        void UpdateProduct(string code, Product product);
     }
 }

@@ -48,6 +48,29 @@ namespace asp_net_web_mvc_1.Controllers
         }
 
         [HttpGet]
+        public ActionResult Edit(string code)
+        {
+            var model = _productRepo.FindByCode(code);
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(string codeProduct, Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                _productRepo.UpdateProduct(codeProduct, product);
+                return RedirectToAction("Details", new { code=product.Code });
+            }
+            return View(product);
+        }
+
+        [HttpGet]
         public ActionResult Delete(string code)
         {
             var model = _productRepo.FindByCode(code);
