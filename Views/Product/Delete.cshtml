@@ -1,0 +1,55 @@
+﻿@model asp_net_web_mvc_1.Models.Product
+
+@{
+    ViewBag.Title = "Confirmar Eliminación";
+}
+
+<h1 class="title has-text-centered">Eliminar Producto</h1>
+
+<h2 class="subtitle has-text-centered">¿Estás seguro de que quieres borrar esto?</h2>
+@using (Html.BeginForm("Delete", "Product", new { code=Model.Code }, FormMethod.Post, new { id = "ProductForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="columns is-centered">
+        <div class="card column">
+            <div class="card-content">
+                <div class="block">
+                    <span class="has-text-weight-bold">Codigo:</span>
+                    <span>@Html.DisplayFor(model => model.Code)</span>
+                </div>
+                <div class="block">
+                    <span class="has-text-weight-bold">Nombre:</span>
+                    <span>@Html.DisplayFor(model => model.Name)</span>
+                </div>
+                <div class="block">
+                    <span class="has-text-weight-bold">Descripción:</span>
+                    <span>@Html.DisplayFor(model => model.Description)</span>
+                </div>
+                <div class="block">
+                    <span class="has-text-weight-bold">Precio:</span>
+                    <span>@Html.DisplayFor(model => model.Price)</span>
+                </div>
+                <div class="block">
+                    <div class="block">
+                        <span class="has-text-weight-bold">Cantidad Minima:</span>
+                        <span>@Html.DisplayFor(model => model.Min_Quantity)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="#" onclick="document.getElementById('ProductForm').submit()" class="card-footer-item has-text-weight-bold">Eliminar Producto</a>
+                @Html.ActionLink("Regresar a la lista", "Index", "Product", null, new { @class = "card-footer-item has-text-weight-bold" })
+            </div>
+        </div>
+    </div>
+}
+@*@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}*@
+

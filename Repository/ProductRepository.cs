@@ -18,6 +18,12 @@ namespace asp_net_web_mvc_1.Repository
             return JsonConvert.DeserializeObject<Product>(res);
         }
 
+        public void DeleteProduct(string code)
+        {
+            var url = $"{Properties.Settings.Default.API}/products/{Uri.EscapeDataString(code)}";
+            ConnectDatabase.ExecDelete(url);
+        }
+
         public Product FindByCode(string code)
         {
             var url = $"{Properties.Settings.Default.API}/products/{Uri.EscapeDataString(code)}";

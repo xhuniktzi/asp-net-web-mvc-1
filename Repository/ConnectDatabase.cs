@@ -11,52 +11,43 @@ namespace asp_net_web_mvc_1.Repository
         {
             var req = (HttpWebRequest)WebRequest.Create(url);
             req.Method = "GET";
-            //try
-            //{
-                using (WebResponse res = req.GetResponse())
+            using (WebResponse res = req.GetResponse())
+            {
+                using (StreamReader reader = new StreamReader(res.GetResponseStream()))
                 {
-                    using (StreamReader reader = new StreamReader(res.GetResponseStream()))
-                    {
-                        return reader.ReadToEnd();
-                    }
+                    return reader.ReadToEnd();
                 }
-            //}
-            //catch (Exception)
-            //{
-            //    throw;
-            //}
+            }
         }
 
         public static string ExecPost(string url, string data, string contentType)
         {
 
-            //try
-            //{
-                var req = (HttpWebRequest)WebRequest.Create(url);
-                req.Method = "POST";
-                req.ContentType = contentType;
+            var req = (HttpWebRequest)WebRequest.Create(url);
+            req.Method = "POST";
+            req.ContentType = contentType;
 
-                var byteData = Encoding.UTF8.GetBytes(data);
-                req.ContentLength = byteData.Length;
+            var byteData = Encoding.UTF8.GetBytes(data);
+            req.ContentLength = byteData.Length;
 
-                var dataStream = req.GetRequestStream();
-                dataStream.Write(byteData, 0, byteData.Length);
-                dataStream.Close();
+            var dataStream = req.GetRequestStream();
+            dataStream.Write(byteData, 0, byteData.Length);
+            dataStream.Close();
 
-                var res = req.GetResponse();
+            var res = req.GetResponse();
                 
-                using (var reader = new StreamReader(res.GetResponseStream()))
-                {
-                    return reader.ReadToEnd();
-                }
-            //}
-            //catch (WebException ex)
-            //{
-            //    var reader = new StreamReader(ex.Response.GetResponseStream());
-            //    var str = reader.ReadToEnd();
-            //    throw;
-            //}
+            using (var reader = new StreamReader(res.GetResponseStream()))
+            {
+                return reader.ReadToEnd();
+            }
 
+        }
+
+        public static void ExecDelete(string url)
+        {
+            var req = (HttpWebRequest)WebRequest.Create(url);
+            req.Method = "DELETE";
+            req.GetResponse();
         }
     }
 }

@@ -22,6 +22,10 @@ namespace asp_net_web_mvc_1.Controllers
         public ActionResult Details(string code)
         {
             var model = _productRepo.FindByCode(code);
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
             return View(model);
         }
         
@@ -41,6 +45,25 @@ namespace asp_net_web_mvc_1.Controllers
                 return RedirectToAction("Details", new { code = product.Code });
             }
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Delete(string code)
+        {
+            var model = _productRepo.FindByCode(code);
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(string code, FormCollection form)
+        {
+            _productRepo.DeleteProduct(code);
+            return RedirectToAction("Index");
         }
     }
 }
