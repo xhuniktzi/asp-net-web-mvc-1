@@ -1,14 +1,37 @@
 ﻿@model asp_net_web_mvc_1.Models.Product
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle del producto";
 }
 
 <h1 class="title has-text-centered">Información del Producto</h1>
 <div class="columns is-centered">
-    <div class="card column is-half">
+    <div class="card column">
         <div class="card-content">
-            <div class="columns">
+            <div class="block">
+                <span class="has-text-weight-bold">Codigo:</span>
+                <span>@Html.DisplayFor(model => model.Code)</span>
+            </div>
+            <div class="block">
+                <span class="has-text-weight-bold">Nombre:</span>
+                <span>@Html.DisplayFor(model => model.Name)</span>
+            </div>
+            <div class="block">
+                <span class="has-text-weight-bold">Descripción:</span>
+                <span>@Html.DisplayFor(model => model.Description)</span>
+            </div>
+            <div class="block">
+                <span class="has-text-weight-bold">Precio:</span>
+                <span>@Html.DisplayFor(model => model.Price)</span>
+            </div>
+            <div class="block">
+                <div class="block">
+                    <span class="has-text-weight-bold">Cantidad Minima:</span>
+                    <span>@Html.DisplayFor(model => model.Min_Quantity)</span>
+                </div>
+            </div>
+
+            @*<div class="columns">
                 <div class="column is-half">
                     <span class="has-text-weight-bold">Codigo:</span>
                     <span>@Html.DisplayFor(model => model.Code)</span>
@@ -31,7 +54,7 @@
                     <span class="has-text-weight-bold">Cantidad Minima:</span>
                     <span>@Html.DisplayFor(model => model.Min_Quantity)</span>
                 </div>
-            </div>
+            </div>*@
         </div>
         <div class="card-footer">
             @Html.ActionLink("Editar", "Edit", "Product", new { code = Model.Code }, new { @class = "card-footer-item has-text-weight-bold" })
@@ -39,61 +62,3 @@
         </div>
     </div>
 </div>
-@*<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Product_Id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Product_Id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Code)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Code)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Min_Quantity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Min_Quantity)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>*@

@@ -10,6 +10,14 @@ namespace asp_net_web_mvc_1.Repository
 {
     public class ProductRepository : IProductRepository
     {
+        public Product CreateProduct(Product product)
+        {
+            var url = $"{Properties.Settings.Default.API}/products";
+            var data = JsonConvert.SerializeObject(product);
+            var res = ConnectDatabase.ExecPost(url, data, "application/json");
+            return JsonConvert.DeserializeObject<Product>(res);
+        }
+
         public Product FindByCode(string code)
         {
             var url = $"{Properties.Settings.Default.API}/products/{Uri.EscapeDataString(code)}";

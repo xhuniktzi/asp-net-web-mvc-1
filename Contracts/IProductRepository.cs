@@ -7,5 +7,7 @@ namespace asp_net_web_mvc_1.Contracts
     {
         IEnumerable<Product> GetAll();
         Product FindByCode(string code);
+
+        Product CreateProduct(Product product);
     }
 }
