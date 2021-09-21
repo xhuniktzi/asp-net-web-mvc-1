@@ -17,5 +17,11 @@ namespace asp_net_web_mvc_1.Controllers
             var model = _productRepo.GetAll();
             return View(model);
         }
+
+        public ActionResult Details(string code)
+        {
+            var model = _productRepo.FindByCode(code);
+            return View(model);
+        }
     }
 }

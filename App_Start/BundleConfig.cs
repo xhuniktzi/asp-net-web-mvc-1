@@ -15,10 +15,6 @@ namespace asp_net_web_mvc_1
             bundles.Add(new Bundle("~/Scripts/js").Include(
                 "~/Scripts/site.js"
                 ));
-
-            //bundles.Add(new Bundle("~/Scripts/js").Include(
-            //    "~/node_modules/bootstrap/dist/js/bootstrap.bundle.js"
-            //    ));
         }
     }
 }

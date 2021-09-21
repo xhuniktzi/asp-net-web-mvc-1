@@ -10,28 +10,16 @@ namespace asp_net_web_mvc_1.Repository
 {
     public class ProductRepository : IProductRepository
     {
+        public Product FindByCode(string code)
+        {
+            var url = $"{Properties.Settings.Default.API}/products/{Uri.EscapeDataString(code)}";
+            return JsonConvert.DeserializeObject<Product>(ConnectDatabase.ExecGet(url));
+        }
+
         public IEnumerable<Product> GetAll()
         {
             var url = $"{Properties.Settings.Default.API}/products";
-            var req = (HttpWebRequest)WebRequest.Create(url);
-            req.Method = "GET";
-            req.ContentType = "application/json";
-            req.Accept = "application/json";
-            try
-            {
-                using(WebResponse res = req.GetResponse())
-                {
-                    using(StreamReader reader = new StreamReader(res.GetResponseStream()))
-                    {
-                        return JsonConvert.DeserializeObject<IEnumerable<Product>>(reader.ReadToEnd());
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("ERROR");
-                throw;
-            }
+            return JsonConvert.DeserializeObject<IEnumerable<Product>>(ConnectDatabase.ExecGet(url));
         }
     }
 }
