@@ -1,10 +1,10 @@
 ﻿@model asp_net_web_mvc_1.Models.Product
 
 @{
-    ViewBag.Title = "Crear Producto";
+    ViewBag.Title = "Editar Producto";
 }
-<h1 class="title has-text-centered">Crear nuevo Producto</h1>
-@using (Html.BeginForm("Create", "Product", null, FormMethod.Post, new { id = "ProductForm"}))
+<h1 class="title has-text-centered">Editar Producto</h1>
+@using (Html.BeginForm("Edit", "Product", new { codeProduct = Model.Code}, FormMethod.Post, new { id = "ProductForm" }))
 {
     @Html.AntiForgeryToken()
     <div class="columns is-centered">
@@ -18,7 +18,7 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control is-expanded">
-                                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "input is-info", placeholder="ABC-123" } })
+                                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "input is-info", placeholder = "ABC-123" } })
                                 @Html.ValidationMessageFor(model => model.Code, "", new { @class = "help has-text-danger" })
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control is-expanded">
-                                @Html.EditorFor(model => model.Price, new { htmlAttributes = new {type="number" ,@class = "input is-info", placeholder = "150.00" } })
+                                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { type = "number", @class = "input is-info", placeholder = "150.00" } })
                                 @Html.ValidationMessageFor(model => model.Price, "", new { @class = "help has-text-danger" })
                             </div>
                         </div>
@@ -83,9 +83,9 @@
 
             </div>
             <div class="card-footer">
-                <a href="#" onclick="document.getElementById('ProductForm').submit()" class="card-footer-item has-text-weight-bold">Crear Producto</a>
+                <a href="#" onclick="document.getElementById('ProductForm').submit()" class="card-footer-item has-text-weight-bold has-text-warning-dark">Editar Producto</a>
                 @Html.ActionLink("Regresar a la lista", "Index", "Product", null, new { @class = "card-footer-item has-text-weight-bold" })
             </div>
         </div>
     </div>
-}
+}    

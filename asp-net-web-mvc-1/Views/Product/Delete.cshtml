@@ -37,19 +37,11 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a href="#" onclick="document.getElementById('ProductForm').submit()" class="card-footer-item has-text-weight-bold">Eliminar Producto</a>
+                <a href="#" onclick="document.getElementById('ProductForm').submit()" class="card-footer-item has-text-weight-bold has-text-danger">Eliminar Producto</a>
                 @Html.ActionLink("Regresar a la lista", "Index", "Product", null, new { @class = "card-footer-item has-text-weight-bold" })
             </div>
         </div>
     </div>
 }
-@*@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
 
-    <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-}*@
 
