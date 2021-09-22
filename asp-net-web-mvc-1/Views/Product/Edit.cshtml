@@ -4,13 +4,14 @@
     ViewBag.Title = "Editar Producto";
 }
 <h1 class="title has-text-centered">Editar Producto</h1>
-@using (Html.BeginForm("Edit", "Product", new { codeProduct = Model.Code}, FormMethod.Post, new { id = "ProductForm" }))
+@using (Html.BeginForm("Edit", "Product", new { codeProduct = Model.Code}, FormMethod.Post, new { id = "ProductForm", autocomplete = "off"}))
 {
     @Html.AntiForgeryToken()
     <div class="columns is-centered">
         <div class="card column">
             <div class="card-content">
                 @Html.ValidationSummary(true, "", new { @class = "help has-text-danger" })
+                
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
                         @Html.LabelFor(model => model.Code, "Codigo:", new { @class = "label" })
@@ -18,12 +19,13 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control is-expanded">
-                                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "input is-info", placeholder = "ABC-123" } })
+                                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "input is-info is-static", placeholder = "ABC-123", @readonly="readonly" } })
                                 @Html.ValidationMessageFor(model => model.Code, "", new { @class = "help has-text-danger" })
                             </div>
                         </div>
                     </div>
                 </div>
+                
 
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">

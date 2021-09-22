@@ -11,10 +11,12 @@ namespace asp_net_web_mvc_1.Models
         public string Name { get; set; }
         public string Description { get; set; }
         [Required(ErrorMessage ="El campo: precio, es obligatorio")]
-        [Range(1,double.MaxValue, ErrorMessage = "El valor ingresado debe ser mayor a 1")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        [Range(0.01,double.MaxValue, ErrorMessage = "El valor ingresado debe ser igual o mayor a 0.01")]
         public double Price { get; set;  }
         [Required(ErrorMessage = "El campo: Cantidad minima, es obligatorio")]
-        [Range(1, int.MaxValue, ErrorMessage = "El valor ingresado debe ser mayor a 1")]
+        [DisplayFormat(DataFormatString = "{0:N0}")]
+        [Range(1, int.MaxValue, ErrorMessage = "El valor ingresado debe ser igual o mayor a 1")]
         public int Min_Quantity { get; set;  }
     }
 }

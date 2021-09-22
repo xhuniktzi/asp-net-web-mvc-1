@@ -4,7 +4,7 @@
     ViewBag.Title = "Crear Producto";
 }
 <h1 class="title has-text-centered">Crear nuevo Producto</h1>
-@using (Html.BeginForm("Create", "Product", null, FormMethod.Post, new { id = "ProductForm"}))
+@using (Html.BeginForm("Create", "Product", null, FormMethod.Post, new { id = "ProductForm", autocomplete = "off" }))
 {
     @Html.AntiForgeryToken()
     <div class="columns is-centered">

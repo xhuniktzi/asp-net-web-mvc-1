@@ -176,7 +176,6 @@
     <Compile Include="Repository\ProductRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include=".gitignore" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\site.js" />
