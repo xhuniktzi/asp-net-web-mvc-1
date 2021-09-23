@@ -1,0 +1,68 @@
+﻿@model IEnumerable<asp_net_web_mvc_1.Models.Client>
+
+@{
+    ViewBag.Title = "Clientes";
+}
+
+<h1 class="title has-text-centered">Clientes</h1>
+
+<div class="box columns is-vcentered">
+    <p class="column is-half has-text-centered">Actualmente @Model.Count() clientes en el sistema.</p>
+    <p class="column is-half has-text-centered">
+        @Html.ActionLink("¿Desea crear un cliente nuevo?", "Create", "Client", null, new { @class = "button is-success is-rounded" })
+    </p>
+</div>
+
+<div class="table-container">
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        <thead>
+            <tr class="has-text-centered">
+                <th>
+                    @Html.ActionLink("Nombre", "Index", new { NameSortOrder = ViewBag.NameSortParam })
+                </th>
+                <th>
+                    Numero de Nit
+                </th>
+                <th>
+                    Numero de Telefono
+                </th>
+                <th>
+                    Direccion
+                </th>
+                <th>
+                    Correo Electronico
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone_Number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Direction)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.E_Mail)
+                    </td>
+                    <td>
+                        <div class="buttons">
+                            @Html.ActionLink("Editar", "Edit", "Client", new { id = item.Client_Id }, new { @class = "button is-small is-link is-rounded" })
+                            @Html.ActionLink("Ver detalles", "Details", "Client", new { id = item.Client_Id }, new { @class = "button is-small is-info is-rounded" })
+                            @Html.ActionLink("Borrar", "Delete", "Client", new { id = item.Client_Id }, new { @class = "button is-small is-danger is-rounded" })
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

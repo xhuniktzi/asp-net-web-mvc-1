@@ -1,0 +1,39 @@
+﻿@model asp_net_web_mvc_1.Models.Client
+
+@{
+    ViewBag.Title = "Detalle del Cliente";
+}
+
+<h1 class="title has-text-centered">Información del Producto</h1>
+<div class="columns is-centered">
+    <div class="card column">
+        <div class="card-content">
+            <div class="block">
+                <span class="has-text-weight-bold">Nombre:</span>
+                <span>@Html.DisplayFor(model => model.Name)</span>
+            </div>
+            <div class="block">
+                <span class="has-text-weight-bold">Nit:</span>
+                <span>@Html.DisplayFor(model => model.Nit)</span>
+            </div>
+            <div class="block">
+                <span class="has-text-weight-bold">Numero de telefono:</span>
+                <span>@Html.DisplayFor(model => model.Phone_Number)</span>
+            </div>
+            <div class="block">
+                <span class="has-text-weight-bold">Dirección:</span>
+                <span>@Html.DisplayFor(model => model.Direction)</span>
+            </div>
+            <div class="block">
+                <div class="block">
+                    <span class="has-text-weight-bold">Correo Electronico:</span>
+                    <span>@Html.DisplayFor(model => model.E_Mail)</span>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            @Html.ActionLink("Editar", "Edit", "Client", new { code = Model.Client_Id }, new { @class = "card-footer-item has-text-weight-bold has-text-warning-dark" })
+            @Html.ActionLink("Regresar a la lista", "Index", "Client", null, new { @class = "card-footer-item has-text-weight-bold" })
+        </div>
+    </div>
+</div>

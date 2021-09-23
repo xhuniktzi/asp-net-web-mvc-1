@@ -3,6 +3,7 @@ using asp_net_web_mvc_1.ErrorHandling;
 using asp_net_web_mvc_1.Models;
 using asp_net_web_mvc_1.Repository;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace asp_net_web_mvc_1.Controllers
 {
@@ -14,10 +15,33 @@ namespace asp_net_web_mvc_1.Controllers
             _productRepo = new ProductRepository();
         }
         // GET: Product
-        public ActionResult Index()
+        public ActionResult Index(string NameSortOrder)
         {
-            var model = _productRepo.GetAll();
-            return View(model);
+            if (string.IsNullOrEmpty(NameSortOrder))
+            {
+                ViewBag.NameSortParam = "asc";
+                var model = _productRepo.GetAll();
+                return View(model);
+            } else if (NameSortOrder == "asc")
+            {
+                ViewBag.NameSortParam = "desc";
+                var model = from product in _productRepo.GetAll()
+                            orderby product.Name ascending
+                            select product;
+                return View(model);
+            } else if (NameSortOrder == "desc")
+            {
+                ViewBag.NameSortParam = "asc";
+                var model = from product in _productRepo.GetAll()
+                            orderby product.Name descending
+                            select product;
+                return View(model);
+            }
+            else
+            {
+                var model = _productRepo.GetAll();
+                return View(model);
+            }
         }
 
         public ActionResult Details(string code)

@@ -21,7 +21,7 @@
                 Codigo
             </th>
             <th>
-                Nombre
+                @Html.ActionLink("Nombre","Index", new { NameSortOrder = ViewBag.NameSortParam })
             </th>
             <th>
                 Descripción
