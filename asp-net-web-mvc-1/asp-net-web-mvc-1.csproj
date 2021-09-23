@@ -217,6 +217,8 @@
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Client\Details.cshtml" />
     <Content Include="Views\Client\Create.cshtml" />
+    <Content Include="Views\Client\Edit.cshtml" />
+    <Content Include="Views\Client\Delete.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

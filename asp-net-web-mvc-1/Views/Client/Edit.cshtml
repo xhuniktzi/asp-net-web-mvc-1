@@ -1,17 +1,18 @@
 ﻿@model asp_net_web_mvc_1.Models.Client
 
 @{
-    ViewBag.Title = "Crear Cliente";
+    ViewBag.Title = "Editar Cliente";
 }
 
-<h1 class="title has-text-centered">Crear nuevo Cliente</h1>
-@using (Html.BeginForm("Create", "Client", null, FormMethod.Post, new { id = "ClientForm", autocomplete = "off" }))
+<h1 class="title has-text-centered">Editar Cliente</h1>
+@using (Html.BeginForm("Edit", "Client", new { idClient = Model.Client_Id }, FormMethod.Post, new { id = "ClientForm", autocomplete = "off" }))
 {
     @Html.AntiForgeryToken()
     <div class="columns is-centered">
         <div class="card column">
             <div class="card-content">
                 @Html.ValidationSummary(true, "", new { @class = "help has-text-danger" })
+
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
                         @Html.LabelFor(model => model.Name, "Nombre:", new { @class = "label" })
@@ -19,12 +20,13 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control is-expanded">
-                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input is-info", placeholder = "Jefferson" } })
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input is-info", placeholder = "ABC-123" } })
                                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "help has-text-danger" })
                             </div>
                         </div>
                     </div>
                 </div>
+
 
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
@@ -33,7 +35,7 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control is-expanded">
-                                @Html.EditorFor(model => model.Nit, new { htmlAttributes = new { @class = "input is-info", placeholder = "123456-7" } })
+                                @Html.EditorFor(model => model.Nit, new { htmlAttributes = new { @class = "input is-info", placeholder = "Botella de Agua" } })
                                 @Html.ValidationMessageFor(model => model.Nit, "", new { @class = "help has-text-danger" })
                             </div>
                         </div>
@@ -47,7 +49,7 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control is-expanded">
-                                @Html.EditorFor(model => model.Phone_Number, new { htmlAttributes = new { @class = "input is-info", placeholder = "50212345678" } })
+                                @Html.EditorFor(model => model.Phone_Number, new { htmlAttributes = new { @class = "input is-info", placeholder = "Botella de 250 ml" } })
                                 @Html.ValidationMessageFor(model => model.Phone_Number, "", new { @class = "help has-text-danger" })
                             </div>
                         </div>
@@ -61,7 +63,7 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control is-expanded">
-                                @Html.EditorFor(model => model.Direction, new { htmlAttributes = new { @class = "input is-info", placeholder = "Calle 2, Avenida 1" } })
+                                @Html.EditorFor(model => model.Direction, new { htmlAttributes = new { @class = "input is-info", placeholder = "150.00" } })
                                 @Html.ValidationMessageFor(model => model.Direction, "", new { @class = "help has-text-danger" })
                             </div>
                         </div>
@@ -75,7 +77,7 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control is-expanded">
-                                @Html.EditorFor(model => model.E_Mail, new { htmlAttributes = new { @class = "input is-info", placeholder = "usuario@company.com" } })
+                                @Html.EditorFor(model => model.E_Mail, new { htmlAttributes = new { @class = "input is-info", placeholder = "10" } })
                                 @Html.ValidationMessageFor(model => model.E_Mail, "", new { @class = "help has-text-danger" })
                             </div>
                         </div>
@@ -84,9 +86,9 @@
 
             </div>
             <div class="card-footer">
-                <a href="#" onclick="document.getElementById('ClientForm').submit()" class="card-footer-item has-text-weight-bold has-text-success">Crear Cliente</a>
+                <a href="#" onclick="document.getElementById('ClientForm').submit()" class="card-footer-item has-text-weight-bold has-text-warning-dark">Editar Cliente</a>
                 @Html.ActionLink("Regresar a la lista", "Index", "Client", null, new { @class = "card-footer-item has-text-weight-bold" })
             </div>
         </div>
     </div>
-}
+}    

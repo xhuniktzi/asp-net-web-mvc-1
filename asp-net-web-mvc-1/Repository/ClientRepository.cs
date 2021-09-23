@@ -18,7 +18,8 @@ namespace asp_net_web_mvc_1.Repository
 
         public void DeleteClient(int id)
         {
-            throw new NotImplementedException();
+            var url = $"{Properties.Settings.Default.API}/clients/{id}";
+            ConnectDatabase.ExecDelete(url);
         }
 
         public Client FindById(int id)
@@ -35,7 +36,9 @@ namespace asp_net_web_mvc_1.Repository
 
         public void UpdateClient(int id, Client client)
         {
-            throw new NotImplementedException();
+            var url = $"{Properties.Settings.Default.API}/clients/{id}";
+            var data = JsonConvert.SerializeObject(client);
+            ConnectDatabase.ExecPut(url, data, "application/json");
         }
     }
 }

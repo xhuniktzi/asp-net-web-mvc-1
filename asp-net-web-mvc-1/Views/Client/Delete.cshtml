@@ -1,0 +1,47 @@
+﻿@model asp_net_web_mvc_1.Models.Client
+
+@{
+    ViewBag.Title = "Confirmar Eliminación";
+}
+
+<h1 class="title has-text-centered">Eliminar Cliente</h1>
+
+<h2 class="subtitle has-text-centered">¿Estás seguro de que quieres borrar esto?</h2>
+@using (Html.BeginForm("Delete", "Client", new { code = Model.Client_Id }, FormMethod.Post, new { id = "ClientForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="columns is-centered">
+        <div class="card column">
+            <div class="card-content">
+                <div class="block">
+                    <span class="has-text-weight-bold">Nombre:</span>
+                    <span>@Html.DisplayFor(model => model.Name)</span>
+                </div>
+                <div class="block">
+                    <span class="has-text-weight-bold">Nit:</span>
+                    <span>@Html.DisplayFor(model => model.Nit)</span>
+                </div>
+                <div class="block">
+                    <span class="has-text-weight-bold">Numero de telefono:</span>
+                    <span>@Html.DisplayFor(model => model.Phone_Number)</span>
+                </div>
+                <div class="block">
+                    <span class="has-text-weight-bold">Dirección:</span>
+                    <span>@Html.DisplayFor(model => model.Direction)</span>
+                </div>
+                <div class="block">
+                    <div class="block">
+                        <span class="has-text-weight-bold">Correo Electronico:</span>
+                        <span>@Html.DisplayFor(model => model.E_Mail)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="#" onclick="document.getElementById('ClientForm').submit()" class="card-footer-item has-text-weight-bold has-text-danger">Eliminar Cliente</a>
+                @Html.ActionLink("Regresar a la lista", "Index", "Client", null, new { @class = "card-footer-item has-text-weight-bold" })
+            </div>
+        </div>
+    </div>
+}
+
+
