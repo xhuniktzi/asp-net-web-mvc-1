@@ -1,0 +1,29 @@
+﻿@model IEnumerable<asp_net_web_mvc_1.Models.Branch>
+
+<div class="table-container m-3">
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        <thead>
+            <tr class="has-text-centered">
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Dirección
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="branch-item">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Direction)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

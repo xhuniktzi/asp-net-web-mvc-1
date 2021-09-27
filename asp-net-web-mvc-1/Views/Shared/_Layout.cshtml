@@ -8,6 +8,7 @@
     @Styles.Render("~/Styles/css")
 </head>
 <body>
+    @RenderSection("modal", required: false)
     <div class="container">
         <header>
             <nav class="navbar has-shadow has-text-weight-bold mb-3" role="navigation" aria-label="navigation">
@@ -23,7 +24,7 @@
                     <div class="navbar-end">
                         @Html.ActionLink("Productos", "Index", "Product", null, new { @class = "navbar-item" })
                         @Html.ActionLink("Clientes", "Index", "Client", null, new { @class = "navbar-item" })
-                        @Html.ActionLink("Facturas", "Index", "Product", null, new { @class = "navbar-item" })
+                        @Html.ActionLink("Facturas", "Index", "Invoice", null, new { @class = "navbar-item" })
                     </div>
                 </div>
             </nav>

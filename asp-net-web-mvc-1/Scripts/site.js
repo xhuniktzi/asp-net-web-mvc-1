@@ -14,3 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    (document.querySelectorAll('.modal .modal-close') || []).forEach(($close) => {
+        const $modal = $close.parentNode;
+
+        $close.addEventListener('click', () => {
+            $modal.classList.toggle('is-active');
+        });
+    });
+});

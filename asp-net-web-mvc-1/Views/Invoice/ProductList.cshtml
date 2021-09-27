@@ -1,0 +1,35 @@
+﻿@model IEnumerable<asp_net_web_mvc_1.Models.Product>
+
+<div class="table-container m-3">
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        <thead>
+            <tr class="has-text-centered">
+                <th>
+                    Codigo
+                </th>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Precio
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="product-item">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="has-text-right">
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
