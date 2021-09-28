@@ -7,35 +7,35 @@
 @section modal{
 <div id="modalSelectClient" class="modal">
     <div class="modal-background"></div>
-        <div class="modal-content">
-            <div class="box">
-                <h2 class="title has-text-centered">Buscar Clientes</h2>
-                <div class="field has-addons">
-                    <div class="control is-expanded">
-                        <input id="inputNameClient" class="input" type="text" placeholder="Thomas Jefferson">
-                    </div>
-                    <div class="control">
-                        <button id="btnSearchClientByName" class="button is-link">
-                            Buscar Por Nombre
-                        </button>
-                    </div>
+    <div class="modal-content">
+        <div class="box">
+            <h2 class="title has-text-centered">Buscar Clientes</h2>
+            <div class="field has-addons">
+                <div class="control is-expanded">
+                    <input id="inputNameClient" class="input" type="text" placeholder="Thomas Jefferson">
                 </div>
-
-                <div class="table-container">
-                    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-                        <thead>
-                            <tr class="has-text-centered">
-                                <th>Nombre</th>
-                                <th>Nit</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableClients">
-
-                        </tbody>
-                    </table>
+                <div class="control">
+                    <button id="btnSearchClientByName" class="button is-link">
+                        Buscar Por Nombre
+                    </button>
                 </div>
             </div>
+
+            <div class="table-container">
+                <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                    <thead>
+                        <tr class="has-text-centered">
+                            <th>Nombre</th>
+                            <th>Nit</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableClients">
+
+                    </tbody>
+                </table>
+            </div>
         </div>
+    </div>
     <button class="modal-close is-large" aria-label="close"></button>
 </div>
 
@@ -108,8 +108,13 @@
 
 @using (Html.BeginForm("Index", "Report", null, FormMethod.Post, new { id = "ReportForm", autocomplete = "off" }))
 {
-    <div class="box has-text-centered">
-        <input type="submit" class="button is-success is-rounded" value="Ejecutar Consulta" />
+    <div class="box columns is-vcentered">
+        <div class="column has-text-centered is-half">
+            <input type="submit" class="button is-success is-rounded"/>
+        </div>
+        <div class="column has-text-centered is-half">
+            <button type="button" class="button is-danger is-rounded" onclick="location.replace(location.href)">Limpiar Consulta</button>
+        </div>
     </div>
     <div class="columns is-vcentered is-multiline is-centered">
         <div class="column is-one-third is-narrow">

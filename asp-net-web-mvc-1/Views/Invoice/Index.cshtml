@@ -1,0 +1,348 @@
+﻿@model asp_net_web_mvc_1.Models.Invoice
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section modal{
+<div id="modalSelectClient" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="box">
+            <h2 class="title has-text-centered">Buscar Clientes</h2>
+            <div class="field has-addons">
+                <div class="control is-expanded">
+                    <input id="inputNameClient" class="input" type="text" placeholder="Thomas Jefferson">
+                </div>
+                <div class="control">
+                    <button id="btnSearchClientByName" class="button is-link">
+                        Buscar Por Nombre
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                    <thead>
+                        <tr class="has-text-centered">
+                            <th>Nombre</th>
+                            <th>Nit</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableClients"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
+<div id="modalSelectBranch" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="box">
+            <h2 class="title has-text-centered">Buscar Sucursales</h2>
+            <div class="field has-addons">
+                <div class="control is-expanded">
+                    <input id="inputNameBranch" class="input" type="text" placeholder="Thomas Jefferson">
+                </div>
+                <div class="control">
+                    <button id="btnSearchBranchByName" class="button is-link">
+                        Buscar Por Nombre
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                    <thead>
+                        <tr class="has-text-centered">
+                            <th>Nombre</th>
+                            <th>Dirección</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBranches"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
+<div id="modalSelectProduct" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="box">
+            <h2 class="title has-text-centered">Buscar Productos</h2>
+            <div class="field has-addons">
+                <div class="control is-expanded">
+                    <input id="inputNameProduct" class="input" type="text" placeholder="Thomas Jefferson">
+                </div>
+                <div class="control">
+                    <button id="btnSearchProductByName" class="button is-link">
+                        Buscar Por Nombre
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                    <thead>
+                        <tr class="has-text-centered">
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableProducts"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+</div>
+}
+
+<h1 class="title has-text-centered">Facturas</h1>
+
+@using (Html.BeginForm("Save", "Invoice", null, FormMethod.Post, new { id = "InvoiceForm", autocomplete = "off" }))
+{
+    <div class="box is-vcentered has-text-centered">
+            <input type="submit" class="button is-success is-rounded" />
+    </div>
+
+    <div class="columns is-vcentered is-multiline is-centered">
+        <div class="column is-one-third is-narrow">
+            <div class="card">
+                <div class="card-header">
+                    <p class="card-header-title">
+                        Cliente
+                    </p>
+                </div>
+                <div class="card-content">
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label for="ClientName" class="label">Nombre:</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                @Html.EditorFor(model => model.ClientName,
+                     new
+                     {
+                         htmlAttributes = new
+                         {
+                             @class = "input is-static",
+                             @readonly = "readonly"
+                         }
+                     })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label for="ClientNit" class="label">Nit:</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                @Html.EditorFor(model => model.ClientNit,
+                     new
+                     {
+                         htmlAttributes = new
+                         {
+                             @class = "input is-static",
+                             @readonly = "readonly"
+                         }
+                     })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field has-text-centered">
+                        <button id="btnModalClient" class="button is-small is-link">Buscar Clientes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="column is-one-third is-narrow">
+            <div class="card">
+                <div class="card-header">
+                    <p class="card-header-title">
+                        Sucursal
+                    </p>
+                </div>
+                <div class="card-content">
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label for="BranchName" class="label">Nombre:</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                @Html.EditorFor(model => model.BranchName,
+                     new
+                     {
+                         htmlAttributes = new
+                         {
+                             @class = "input is-static",
+                             @readonly = "readonly"
+                         }
+                     })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label for="BranchDirection" class="label">Dirección:</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                @Html.EditorFor(model => model.BranchDirection,
+                     new
+                     {
+                         htmlAttributes = new
+                         {
+                             @class = "input is-static",
+                             @readonly = "readonly"
+                         }
+                     })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field has-text-centered">
+                        <button id="btnModalBranch" class="button is-small is-link">Buscar Sucursal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="column is-one-third is-narrow">
+            <div class="card">
+                <div class="card-header">
+                    <p class="card-header-title">
+                        Datos de la factura
+                    </p>
+                </div>
+                <div class="card-content">
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            @Html.LabelFor(model => model.Serial_Number, "Serie:", new { @class = "label" })
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                @Html.EditorFor(model => model.Serial_Number, new { htmlAttributes = new { @class = "input is-info" } })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            @Html.LabelFor(model => model.Invoice_Number, "Numero:", new { @class = "label" })
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                @Html.EditorFor(model => model.Invoice_Number, new { htmlAttributes = new { @class = "input is-info" } })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            @Html.LabelFor(model => model.Order_Date, "Numero:", new { @class = "label" })
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                @Html.EditorFor(model => model.Order_Date, new { htmlAttributes = new { @class = "input is-info", type = "date" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="columns is-vcentered is-multiline is-centered">
+        <div class="column is-two-fifths is-narrow">
+            <div class="card">
+                <div class="card-header">
+                    <p class="card-header-title">
+                        Agregar Producto
+                    </p>
+                </div>
+                <div class="card-content">
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label for="ProductCode" class="label">Codigo:</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                <input id="ProductCode" class="input is-static" readonly/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label for="ProductName" class="label">Nombre:</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                <input id="ProductName" class="input is-static" readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label for="ProductQuantity" class="label">Cantidad:</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                <input id="ProductQuantity" type="number" class="input is-info" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field has-text-centered">
+                        <button id="btnModalProduct" class="button control is-small is-link">Buscar Producto</button>
+                        <button id="btnAddProduct" class="button control is-small is-success">Agregar Producto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column is-three-fifths is-narrow">
+            <div class="box">
+                <div class="table-container">
+                    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                        <thead>
+                            <tr class="has-text-centered">
+                                <th>Codigo</th>
+                                <th>Nombre</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.details)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Code)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Total)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts{
+    <script src="~/Scripts/invoices.js"></script>    
+}
