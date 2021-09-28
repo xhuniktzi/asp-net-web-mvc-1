@@ -1,0 +1,256 @@
+﻿@model asp_net_web_mvc_1.Models.Report
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1 class="title has-text-centered">Consulta</h1>
+
+@using (Html.BeginForm("Index", "Report", null, FormMethod.Post, new { id = "ReportForm", autocomplete = "off" }))
+{
+    <div class="box has-text-centered">
+        <input type="submit" class="button is-success is-rounded" value="Ejecutar Consulta" />
+    </div>
+    <div class="columns is-vcentered is-multiline is-centered">
+        <div class="column is-one-third is-narrow">
+            <div class="card">
+                <div class="card-header">
+                    <p class="card-header-title">
+                        Filtrar por fechas
+                    </p>
+                </div>
+                <div class="card-content">
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            @Html.LabelFor(model => model.Start_Date, "Fecha inicial:", new { @class = "label" })
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                @Html.EditorFor(model => model.Start_Date, new { htmlAttributes = new { @class = "input is-info", type = "date" } })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            @Html.LabelFor(model => model.End_Date, "Fecha de final:", new { @class = "label" })
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                @Html.EditorFor(model => model.End_Date, new { htmlAttributes = new { @class = "input is-info", type = "date" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="column is-one-third is-narrow">
+            <div class="card">
+                <div class="card-header">
+                    <p class="card-header-title">
+                        Filtrar por datos de las facturas
+                    </p>
+                </div>
+                <div class="card-content">
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            @Html.LabelFor(model => model.Serial_Number, "Serie:", new { @class = "label" })
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                @Html.EditorFor(model => model.Serial_Number, new { htmlAttributes = new { @class = "input is-info" } })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            @Html.LabelFor(model => model.Invoice_Number, "Numero:", new { @class = "label" })
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                @Html.EditorFor(model => model.Invoice_Number, new { htmlAttributes = new { @class = "input is-info" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column is-one-third is-narrow">
+            <div class="card">
+                <div class="card-header">
+                    <p class="card-header-title">
+                        Cliente
+                    </p>
+                </div>
+                <div class="card-content">
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label for="ClientName" class="label">Nombre:</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                <input id="ClientName" type="text" class="input is-static" readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label for="ClientNit" class="label">Nit:</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                <input id="ClientNit" type="text" class="input is-static" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column is-one-third is-narrow">
+            <div class="card">
+                <div class="card-header">
+                    <p class="card-header-title">
+                        Card header
+                    </p>
+                </div>
+                <div class="card-content">
+                    <div class="content">
+                        Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column is-one-third is-narrow">
+            <div class="card">
+                <div class="card-header">
+                    <p class="card-header-title">
+                        Card header
+                    </p>
+                </div>
+                <div class="card-content">
+                    <div class="content">
+                        Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="table-container">
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                <thead>
+                    <tr class="has-text-centered">
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Serie
+                        </th>
+                        <th>
+                            Numero de factura
+                        </th>
+                        <th>
+                            Nombre del Cliente
+                        </th>
+                        <th>
+                            Dirección
+                        </th>
+                        <th>
+                            Numero de Nit
+                        </th>
+                        <th>
+                            Nombre de la Sucursal
+                        </th>
+                        <th>
+                            Dirección
+                        </th>
+                        <th>
+                            Fecha
+                        </th>
+                        <th>
+                            Codigo de Producto
+                        </th>
+                        <th>
+                            Nombre
+                        </th>
+                        <th>
+                            Descripción
+                        </th>
+                        <th>
+                            Cantidad
+                        </th>
+                        <th>
+                            Precio
+                        </th>
+                        <th>
+                            Total
+                        </th>
+                        <th>
+                            Total de la Orden
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.results)
+                    {
+                        <tr class="has-text-centered">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Order_Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Serial_Number)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Invoice_Number)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Client_Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Client_Direction)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Client_Nit)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Branch_Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Branch_Direction)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Order_Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Product_Code)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Product_Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Product_Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Quantity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Total)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Order_Total)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+}
