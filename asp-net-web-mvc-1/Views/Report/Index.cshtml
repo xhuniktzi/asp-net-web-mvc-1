@@ -5,17 +5,83 @@
 }
 
 @section modal{
-    <div id="modalSelectClient" class="modal">
+<div id="modalSelectClient" class="modal">
+    <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="box">
+                <h2 class="title has-text-centered">Buscar Clientes</h2>
+                <div class="field has-addons">
+                    <div class="control is-expanded">
+                        <input id="inputNameClient" class="input" type="text" placeholder="Thomas Jefferson">
+                    </div>
+                    <div class="control">
+                        <button id="btnSearchClientByName" class="button is-link">
+                            Buscar Por Nombre
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                        <thead>
+                            <tr class="has-text-centered">
+                                <th>Nombre</th>
+                                <th>Nit</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableClients">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
+<div id="modalSelectProduct" class="modal">
     <div class="modal-background"></div>
     <div class="modal-content">
         <div class="box">
-            <h2 class="title has-text-centered">Buscar Clientes</h2>
+            <h2 class="title has-text-centered">Buscar Productos</h2>
             <div class="field has-addons">
                 <div class="control is-expanded">
-                    <input id="inputNameClient" class="input" type="text" placeholder="Thomas Jefferson">
+                    <input id="inputNameProduct" class="input" type="text" placeholder="Thomas Jefferson">
                 </div>
                 <div class="control">
-                    <button id="btnSearchClientByName" class="button is-link">
+                    <button id="btnSearchProductByName" class="button is-link">
+                        Buscar Por Nombre
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                    <thead>
+                        <tr class="has-text-centered">
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableProducts"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
+<div id="modalSelectBranch" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="box">
+            <h2 class="title has-text-centered">Buscar Sucursales</h2>
+            <div class="field has-addons">
+                <div class="control is-expanded">
+                    <input id="inputNameBranch" class="input" type="text" placeholder="Thomas Jefferson">
+                </div>
+                <div class="control">
+                    <button id="btnSearchBranchByName" class="button is-link">
                         Buscar Por Nombre
                     </button>
                 </div>
@@ -26,12 +92,10 @@
                     <thead>
                         <tr class="has-text-centered">
                             <th>Nombre</th>
-                            <th>Nit</th>
+                            <th>Dirección</th>
                         </tr>
                     </thead>
-                    <tbody id="tableClients">
-
-                    </tbody>
+                    <tbody id="tableBranches"></tbody>
                 </table>
             </div>
         </div>
@@ -117,7 +181,7 @@
             <div class="card">
                 <div class="card-header">
                     <p class="card-header-title">
-                        Cliente
+                        Filtrar por cliente
                     </p>
                 </div>
                 <div class="card-content">
@@ -170,12 +234,51 @@
             <div class="card">
                 <div class="card-header">
                     <p class="card-header-title">
-                        Card header
+                        Filtrar por producto
                     </p>
                 </div>
                 <div class="card-content">
-                    <div class="content">
-                        Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum.
+                    @Html.HiddenFor(model => model.Product_Id, new { id = "hideProductId" })
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label for="ProductCode" class="label">Codigo:</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                @Html.EditorFor(model => model.ProductCode,
+                                    new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "input is-static",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label for="ProductName" class="label">Nombre:</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                @Html.EditorFor(model => model.ProductName,
+                                    new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "input is-static",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field has-text-centered">
+                        <button id="btnModalProduct" class="button is-small is-link">Buscar Productos</button>
                     </div>
                 </div>
             </div>
@@ -184,12 +287,51 @@
             <div class="card">
                 <div class="card-header">
                     <p class="card-header-title">
-                        Card header
+                        Filtrar por sucursal
                     </p>
                 </div>
                 <div class="card-content">
-                    <div class="content">
-                        Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum.
+                    @Html.HiddenFor(model => model.Branch_Id, new { id = "hideBranchId" })
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label for="BranchName" class="label">Nombre:</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                @Html.EditorFor(model => model.BranchName,
+                                    new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "input is-static",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label for="BranchDirection" class="label">Dirección:</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field control is-expanded">
+                                @Html.EditorFor(model => model.BranchDirection,
+                                    new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "input is-static",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field has-text-centered">
+                        <button id="btnModalBranch" class="button is-small is-link">Buscar Sucursal</button>
                     </div>
                 </div>
             </div>
@@ -313,5 +455,5 @@
 }
 
 @section scripts{
-    <script src="~/Scripts/invoice.js"></script>    
+    <script src="~/Scripts/reports.js"></script>    
 }

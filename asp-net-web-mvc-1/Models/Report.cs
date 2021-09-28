@@ -15,7 +15,11 @@ namespace asp_net_web_mvc_1.Models
         public string ClientName { get; set; } = null;
         public string ClientNit { get; set; } = null;
         public int? Product_Id { get; set; } = null;
+        public string ProductCode { get; set; } = null;
+        public string ProductName { get; set; } = null;
         public int? Branch_Id { get; set; } = null;
+        public string BranchName { get; set; } = null;
+        public string BranchDirection { get; set; } = null;
         public IEnumerable<ReportDetail> results { get; set; } = new List<ReportDetail>();
     }
 }
