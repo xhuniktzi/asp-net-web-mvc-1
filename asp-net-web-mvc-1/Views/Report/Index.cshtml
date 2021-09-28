@@ -4,6 +4,42 @@
     ViewBag.Title = "Index";
 }
 
+@section modal{
+    <div id="modalSelectClient" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="box">
+            <h2 class="title has-text-centered">Buscar Clientes</h2>
+            <div class="field has-addons">
+                <div class="control is-expanded">
+                    <input id="inputNameClient" class="input" type="text" placeholder="Thomas Jefferson">
+                </div>
+                <div class="control">
+                    <button id="btnSearchClientByName" class="button is-link">
+                        Buscar Por Nombre
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                    <thead>
+                        <tr class="has-text-centered">
+                            <th>Nombre</th>
+                            <th>Nit</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableClients">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+</div>
+}
+
 <h1 class="title has-text-centered">Consulta</h1>
 
 @using (Html.BeginForm("Index", "Report", null, FormMethod.Post, new { id = "ReportForm", autocomplete = "off" }))
@@ -85,6 +121,7 @@
                     </p>
                 </div>
                 <div class="card-content">
+                    @Html.HiddenFor(model => model.Client_Id, new { id="hideClientId" })
                     <div class="field is-horizontal">
                         <div class="field-label is-normal">
                             <label for="ClientName" class="label">Nombre:</label>
@@ -105,6 +142,10 @@
                                 <input id="ClientNit" type="text" class="input is-static" readonly />
                             </div>
                         </div>
+                    </div>
+
+                    <div class="field has-text-centered">
+                        <button id="btnModalClient" class="button is-small is-link">Buscar Clientes</button>
                     </div>
                 </div>
             </div>
@@ -253,4 +294,8 @@
         </div>
         
     </div>
+}
+
+@section scripts{
+    <script src="~/Scripts/invoice.js"></script>    
 }
