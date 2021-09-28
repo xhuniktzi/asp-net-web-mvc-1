@@ -128,7 +128,15 @@
                         </div>
                         <div class="field-body">
                             <div class="field control is-expanded">
-                                <input id="ClientName" type="text" class="input is-static" readonly />
+                                @Html.EditorFor(model => model.ClientName,
+                                    new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "input is-static",
+                                            @readonly = "readonly"
+                                        }
+                                    })
                             </div>
                         </div>
                     </div>
@@ -139,7 +147,15 @@
                         </div>
                         <div class="field-body">
                             <div class="field control is-expanded">
-                                <input id="ClientNit" type="text" class="input is-static" readonly />
+                                @Html.EditorFor(model => model.ClientNit,
+                                    new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "input is-static",
+                                            @readonly = "readonly"
+                                        }
+                                    })
                             </div>
                         </div>
                     </div>

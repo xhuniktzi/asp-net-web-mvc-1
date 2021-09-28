@@ -16,7 +16,6 @@ btnModalClient.addEventListener('click', (e) => {
     modalSelectClient.classList.toggle('is-active');
 });
 
-
 btnSearchClientByName.addEventListener('click', () => {
     tableClients.querySelectorAll('*').forEach(n => n.remove());
     let url;
