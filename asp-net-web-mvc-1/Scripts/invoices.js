@@ -16,9 +16,9 @@ const modalSelectProduct = document.getElementById('modalSelectProduct');
 const btnSearchProductByName = document.getElementById('btnSearchProductByName');
 const inputNameProduct = document.getElementById('inputNameProduct');
 const tableProducts = document.getElementById('tableProducts');
-//const hideProductId = document.getElementById('hideProductId');
 const ProductCode = document.getElementById('ProductCode');
 const ProductName = document.getElementById('ProductName');
+const ProductPrice = document.getElementById('ProductPrice');
 const btnAddProduct = document.getElementById('btnAddProduct');
 const ProductQuantity = document.getElementById('ProductQuantity');
 
@@ -162,6 +162,10 @@ btnSearchProductByName.addEventListener('click', (e) => {
             name.innerText = e.name;
             row.appendChild(name);
 
+            const price = document.createElement('td');
+            price.innerText = e.price;
+            row.appendChild(price);
+
             row.addEventListener('click', selectProduct);
         }
     })
@@ -186,5 +190,6 @@ function selectBranch() {
 function selectProduct() {
     ProductCode.value = this.children[1].innerText
     ProductName.value = this.children[2].innerText
+    ProductPrice.value = this.children[3].innerText
     modalSelectProduct.classList.toggle('is-active');
 }
