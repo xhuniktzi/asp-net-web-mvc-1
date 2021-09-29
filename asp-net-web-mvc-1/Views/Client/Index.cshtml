@@ -55,11 +55,9 @@
                         @Html.DisplayFor(modelItem => item.E_Mail)
                     </td>
                     <td>
-                        <div class="buttons">
-                            @Html.ActionLink("Editar", "Edit", "Client", new { id = item.Client_Id }, new { @class = "button is-small is-link is-rounded" })
-                            @Html.ActionLink("Ver detalles", "Details", "Client", new { id = item.Client_Id }, new { @class = "button is-small is-info is-rounded" })
-                            @Html.ActionLink("Borrar", "Delete", "Client", new { id = item.Client_Id }, new { @class = "button is-small is-danger is-rounded" })
-                        </div>
+                        @Html.ActionLink("Editar", "Edit", "Client", new { id = item.Client_Id }, new { @class = "button is-small is-link is-rounded" })
+                        @Html.ActionLink("Ver detalles", "Details", "Client", new { id = item.Client_Id }, new { @class = "button is-small is-info is-rounded" })
+                        @Html.ActionLink("Borrar", "Delete", "Client", new { id = item.Client_Id }, new { @class = "button is-small is-danger is-rounded" })
                     </td>
                 </tr>
             }

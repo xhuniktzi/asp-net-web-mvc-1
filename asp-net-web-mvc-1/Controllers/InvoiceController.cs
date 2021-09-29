@@ -143,6 +143,17 @@ namespace asp_net_web_mvc_1.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Reset()
+        {
+            Session["PRODUCTS"] = null;
+            Session["CLIENT"] = null;
+            Session["BRANCH"] = null;
+
+            Session.Clear();
+
+            return RedirectToAction("Index");
+        }
+
         [HttpPost]
         public ActionResult Index(Invoice invoice, FormCollection form)
         {

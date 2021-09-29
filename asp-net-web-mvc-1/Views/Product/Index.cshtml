@@ -55,11 +55,9 @@
                         @Html.DisplayFor(modelItem => item.Min_Quantity)
                     </td>
                     <td>
-                        <div class="buttons">
                         @Html.ActionLink("Editar", "Edit", "Product", new { code = item.Code }, new { @class="button is-small is-link is-rounded"})
                         @Html.ActionLink("Ver detalles", "Details", "Product", new { code = item.Code }, new { @class = "button is-small is-info is-rounded" })
                         @Html.ActionLink("Borrar", "Delete", "Product", new { code = item.Code }, new { @class = "button is-small is-danger is-rounded" })
-                        </div>
                     </td>
                 </tr>
             }

@@ -106,16 +106,15 @@
 
 @using (Html.BeginForm("Index", "Invoice", null, FormMethod.Post, new { id = "InvoiceForm", autocomplete = "off" }))
 {
-    @*<div class="box is-vcentered has-text-centered">
-            
-    </div>*@
-
     <div class="box columns is-vcentered">
-        <p class="column is-half has-text-centered">Total de la factura @Html.DisplayFor(m => m.Total)</p>
-        <p class="column is-half has-text-centered">
+        <p class="column is-one-third has-text-centered">Total de la factura @Html.DisplayFor(m => m.Total)</p>
+        <p class="column is-one-third has-text-centered">
             <input type="submit" class="button is-success is-rounded" value="Crear Factura"/>
         </p>
-    </div>
+        <p class="column is-one-third has-text-centered">
+            <a class="button is-danger is-rounded" href="/Invoice/Reset">Limpiar Factura</a>
+        </p>
+</div>
 
     <div class="columns is-vcentered is-multiline is-centered">
         <div class="column is-one-third is-narrow">
@@ -339,8 +338,8 @@
                                     <td>@Html.DisplayFor(modelItem => item.Code)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Name)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Price)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Total)</td>
+                                    <td class="has-text-right">@Html.DisplayFor(modelItem => item.Price)</td>
+                                    <td class="has-text-right">@Html.DisplayFor(modelItem => item.Total)</td>
                                     <td class="has-text-centered">
                                         <a class="delete" href="/Invoice/Delete/@Html.DisplayFor(modelItem => item.Product_Id)"></a>
                                     </td>

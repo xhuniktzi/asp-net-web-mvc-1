@@ -9,8 +9,10 @@ namespace asp_net_web_mvc_1
         {
             bundles.Add(new StyleBundle("~/Styles/css").Include(
                 "~/node_modules/normalize.css/normalize.css",
-                "~/node_modules/bulma/css/bulma.css"
+                "~/node_modules/bulma/css/bulma.css",
+                "~/Styles/site.css"
                 ));
+
 
             bundles.Add(new Bundle("~/Scripts/js").Include(
                 "~/Scripts/site.js"
