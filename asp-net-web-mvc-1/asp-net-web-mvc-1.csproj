@@ -173,6 +173,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Contracts\IBranchRepository.cs" />
     <Compile Include="Contracts\IClientRepository.cs" />
+    <Compile Include="Contracts\IInvoiceRepository.cs" />
     <Compile Include="Contracts\IProductRepository.cs" />
     <Compile Include="Contracts\IReportRepository.cs" />
     <Compile Include="Controllers\ClientController.cs" />
@@ -189,6 +190,8 @@
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\InvoiceDetail.cs" />
+    <Compile Include="Models\InvoiceDetailDto.cs" />
+    <Compile Include="Models\InvoiceDto.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\ReportDetail.cs" />
@@ -202,6 +205,7 @@
     <Compile Include="Repository\BranchRepository.cs" />
     <Compile Include="Repository\ClientRepository.cs" />
     <Compile Include="Repository\ConnectDatabase.cs" />
+    <Compile Include="Repository\InvoiceRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\ReportRepository.cs" />
   </ItemGroup>

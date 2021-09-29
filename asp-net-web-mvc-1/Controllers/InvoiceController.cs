@@ -13,11 +13,13 @@ namespace asp_net_web_mvc_1.Controllers
         private readonly IClientRepository _clientRepo;
         private readonly IBranchRepository _branchRepo;
         private readonly IProductRepository _productRepo;
+        private readonly IInvoiceRepository _invoiceRepo;
         public InvoiceController()
         {
             _clientRepo = new ClientRepository();
             _branchRepo = new BranchRepository();
             _productRepo = new ProductRepository();
+            _invoiceRepo = new InvoiceRepository();
         }
         // GET: Invoice
         public ActionResult Index(int? clientId, int? branchId, string productCode, int? quantity)
@@ -119,11 +121,66 @@ namespace asp_net_web_mvc_1.Controllers
         }
 
         [HttpPost]
-        public ActionResult Save(Invoice invoice,FormCollection form)
+        public ActionResult Index(Invoice invoice, FormCollection form)
         {
+            if (Session["CLIENT"] == null)
+            {
+                TempData["Error"] = "Debes seleccionar un cliente";
+                return View(invoice);
+            }
+
+            if (Session["BRANCH"] == null)
+            {
+                TempData["Error"] = "Debes seleccionar una sucursal";
+                return View(invoice);
+            }
+
+            if (Session["PRODUCTS"] == null)
+            {
+                TempData["Error"] = "Debes tener algun producto";
+                return View(invoice);
+            }
+
+            if (invoice.Serial_Number == null)
+            {
+                TempData["Error"] = "Debes ingresar una serie para la factura";
+                return View(invoice);
+            }
+
+            if (invoice.Invoice_Number == null)
+            {
+                TempData["Error"] = "Debes ingresar numero de factura";
+                return View(invoice);
+            }
+
+            var productList = Session["PRODUCTS"] as List<InvoiceDetail>;
+            var client = Session["CLIENT"] as Client;
+            var branch = Session["BRANCH"] as Branch;
+
+            var info = new InvoiceDto();
+            info.Client_Id = client.Client_Id;
+            info.Branch_Id = branch.Branch_Id;
+            info.Serial_Number = invoice.Serial_Number;
+            info.Invoice_Number = invoice.Invoice_Number.GetValueOrDefault();
+            info.Order_Date = invoice.Order_Date;
+
+            foreach(var product in productList)
+            {
+                info.Product_Detail.Add(new InvoiceDetailDto() {
+                    Product_Id = product.Product_Id,
+                    Quantity = product.Quantity
+                });
+            }
+
+            _invoiceRepo.CreateInvoice(info);
+
+
+            Session["PRODUCTS"] = null;
             Session["CLIENT"] = null;
             Session["BRANCH"] = null;
-            Session["PRODUCTS"] = null;
+
+            Session.Clear();
+
             return RedirectToAction("Index");
         }
     }
