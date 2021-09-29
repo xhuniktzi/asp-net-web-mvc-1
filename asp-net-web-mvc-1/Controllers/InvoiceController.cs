@@ -135,6 +135,14 @@ namespace asp_net_web_mvc_1.Controllers
             return View(model);
         }
 
+        public ActionResult Delete(int id)
+        {
+            var productList = Session["PRODUCTS"] as List<InvoiceDetail>;
+            productList.RemoveAll(p => p.Product_Id == id);
+            Session["PRODUCTS"] = productList;
+            return RedirectToAction("Index");
+        }
+
         [HttpPost]
         public ActionResult Index(Invoice invoice, FormCollection form)
         {
@@ -145,9 +153,14 @@ namespace asp_net_web_mvc_1.Controllers
                     TempData["Error"] = "Debes tener algun producto";
                     return View(invoice);
                 }
-
                 var productList = Session["PRODUCTS"] as List<InvoiceDetail>;
                 invoice.details = productList;
+
+                if (!(productList.Count() > 0))
+                {
+                    TempData["Error"] = "Debes tener algun producto";
+                    return View(invoice);
+                }
 
                 if (Session["CLIENT"] == null)
                 {

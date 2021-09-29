@@ -322,6 +322,7 @@
                                 <th>Cantidad</th>
                                 <th>Precio</th>
                                 <th>Total</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -333,6 +334,9 @@
                                     <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Price)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Total)</td>
+                                    <td class="has-text-centered">
+                                        <a class="delete" href="/Invoice/Delete/@Html.DisplayFor(modelItem => item.Product_Id)"></a>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
