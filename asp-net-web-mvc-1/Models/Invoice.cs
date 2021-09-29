@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -16,6 +17,15 @@ namespace asp_net_web_mvc_1.Models
         public int? Branch_Id { get; set; } = null;
         public string BranchName { get; set; } = null;
         public string BranchDirection { get; set; } = null;
-        public IEnumerable<InvoiceDetail> details { get; set; } = new List<InvoiceDetail>();
+        public List<InvoiceDetail> details { get; set; } = new List<InvoiceDetail>();
+
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        public double Total
+        {
+            get
+            {
+                return details.Sum(d => d.Total);
+            }
+        }
     }
 }

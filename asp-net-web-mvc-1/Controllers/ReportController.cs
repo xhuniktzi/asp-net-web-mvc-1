@@ -31,7 +31,16 @@ namespace asp_net_web_mvc_1.Controllers
                 return View(report);
             }
 
-            report.results = _reportsRepo.Search(report);
+            var req = new ReportQueryDto();
+            req.Start_Date = report.Start_Date;
+            req.End_Date = report.End_Date;
+            req.Serial_Number = report.Serial_Number;
+            req.Invoice_Number = report.Invoice_Number;
+            req.Client_Id = report.Client_Id;
+            req.Product_Id = report.Product_Id;
+            req.Branch_Id = report.Branch_Id;
+
+            report.results = _reportsRepo.Search(req);
             return View(report);
         }
     }

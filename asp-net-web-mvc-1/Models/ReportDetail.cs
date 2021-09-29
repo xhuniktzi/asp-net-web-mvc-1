@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,6 +8,7 @@ namespace asp_net_web_mvc_1.Models
 {
     public class ReportDetail
     {
+
         public int Order_Id { get; set; }
         public string Serial_Number { get; set; }
         public int Invoice_Number { get; set; }
@@ -22,8 +24,11 @@ namespace asp_net_web_mvc_1.Models
         public string Product_Name { get; set; }
         public string Product_Description { get; set; }
         public int Quantity { get; set; }
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public double Price { get; set; }
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public double Total { get; set; }
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public double Order_Total { get; set; }
     }
 }

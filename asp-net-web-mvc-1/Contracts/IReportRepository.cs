@@ -9,6 +9,6 @@ namespace asp_net_web_mvc_1.Contracts
 {
     interface IReportRepository
     {
-        IEnumerable<ReportDetail> Search(Report query);
+        IEnumerable<ReportDetail> Search(ReportQueryDto query);
     }
 }
