@@ -5,6 +5,7 @@ using asp_net_web_mvc_1.Extensions;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Linq;
+using asp_net_web_mvc_1.ErrorHandling;
 
 namespace asp_net_web_mvc_1.Controllers
 {
@@ -57,7 +58,21 @@ namespace asp_net_web_mvc_1.Controllers
                 model.BranchDirection = branch.Direction;
             }
 
-            if(!productCode.IsNullOrEmptyOrWhiteSpace() && quantity != null)
+            if (!productCode.IsNullOrEmptyOrWhiteSpace() && quantity == null)
+            {
+                if (Session["PRODUCTS"] != null)
+                {
+                    TempData["Error"] = "Debe ingresar una cantidad";
+                    model.details = Session["PRODUCTS"] as List<InvoiceDetail>;
+                    return View(model);
+                }
+                else
+                {
+                    TempData["Error"] = "Debe ingresar una cantidad";
+                    return View(model);
+                }
+            }
+            else if(!productCode.IsNullOrEmptyOrWhiteSpace() && quantity != null)
             {
                 if (!(quantity > 0))
                 {
@@ -123,65 +138,79 @@ namespace asp_net_web_mvc_1.Controllers
         [HttpPost]
         public ActionResult Index(Invoice invoice, FormCollection form)
         {
-            if (Session["CLIENT"] == null)
+            try
             {
-                TempData["Error"] = "Debes seleccionar un cliente";
+                if (Session["PRODUCTS"] == null)
+                {
+                    TempData["Error"] = "Debes tener algun producto";
+                    return View(invoice);
+                }
+
+                var productList = Session["PRODUCTS"] as List<InvoiceDetail>;
+                invoice.details = productList;
+
+                if (Session["CLIENT"] == null)
+                {
+                    TempData["Error"] = "Debes seleccionar un cliente";
+                    return View(invoice);
+                }
+
+                if (Session["BRANCH"] == null)
+                {
+                    TempData["Error"] = "Debes seleccionar una sucursal";
+                    return View(invoice);
+                }
+
+                var client = Session["CLIENT"] as Client;
+                var branch = Session["BRANCH"] as Branch;
+
+                if (invoice.Serial_Number.IsNullOrEmptyOrWhiteSpace())
+                {
+                    TempData["Error"] = "Debes ingresar una serie para la factura";
+                    return View(invoice);
+                }
+
+                if (invoice.Invoice_Number == null)
+                {
+                    TempData["Error"] = "Debes ingresar numero de factura";
+                    return View(invoice);
+                }
+
+                var info = new InvoiceDto();
+                info.Client_Id = client.Client_Id;
+                info.Branch_Id = branch.Branch_Id;
+                info.Serial_Number = invoice.Serial_Number;
+                info.Invoice_Number = invoice.Invoice_Number.GetValueOrDefault();
+                info.Order_Date = invoice.Order_Date;
+
+                foreach (var product in productList)
+                {
+                    info.Product_Detail.Add(new InvoiceDetailDto()
+                    {
+                        Product_Id = product.Product_Id,
+                        Quantity = product.Quantity
+                    });
+                }
+
+                _invoiceRepo.CreateInvoice(info);
+
+
+                Session["PRODUCTS"] = null;
+                Session["CLIENT"] = null;
+                Session["BRANCH"] = null;
+
+                Session.Clear();
+
+                return RedirectToAction("Index");
+            }
+            catch (ApiException ex)
+            {
+                if (Session["PRODUCTS"] != null)
+                    invoice.details = Session["PRODUCTS"] as List<InvoiceDetail>;
+                TempData["Error"] = $"Error: {ex.Message}";
                 return View(invoice);
             }
 
-            if (Session["BRANCH"] == null)
-            {
-                TempData["Error"] = "Debes seleccionar una sucursal";
-                return View(invoice);
-            }
-
-            if (Session["PRODUCTS"] == null)
-            {
-                TempData["Error"] = "Debes tener algun producto";
-                return View(invoice);
-            }
-
-            if (invoice.Serial_Number == null)
-            {
-                TempData["Error"] = "Debes ingresar una serie para la factura";
-                return View(invoice);
-            }
-
-            if (invoice.Invoice_Number == null)
-            {
-                TempData["Error"] = "Debes ingresar numero de factura";
-                return View(invoice);
-            }
-
-            var productList = Session["PRODUCTS"] as List<InvoiceDetail>;
-            var client = Session["CLIENT"] as Client;
-            var branch = Session["BRANCH"] as Branch;
-
-            var info = new InvoiceDto();
-            info.Client_Id = client.Client_Id;
-            info.Branch_Id = branch.Branch_Id;
-            info.Serial_Number = invoice.Serial_Number;
-            info.Invoice_Number = invoice.Invoice_Number.GetValueOrDefault();
-            info.Order_Date = invoice.Order_Date;
-
-            foreach(var product in productList)
-            {
-                info.Product_Detail.Add(new InvoiceDetailDto() {
-                    Product_Id = product.Product_Id,
-                    Quantity = product.Quantity
-                });
-            }
-
-            _invoiceRepo.CreateInvoice(info);
-
-
-            Session["PRODUCTS"] = null;
-            Session["CLIENT"] = null;
-            Session["BRANCH"] = null;
-
-            Session.Clear();
-
-            return RedirectToAction("Index");
         }
     }
 }
