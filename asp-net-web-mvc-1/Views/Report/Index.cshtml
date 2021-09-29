@@ -21,6 +21,17 @@
                 </div>
             </div>
 
+            <div class="field has-addons">
+                <div class="control is-expanded">
+                    <input id="inputNitClient" class="input" type="text" placeholder="123564-C">
+                </div>
+                <div class="control">
+                    <button id="btnSearchClientByNit" class="button is-link">
+                        Buscar Por Nit
+                    </button>
+                </div>
+            </div>
+
             <div class="table-container">
                 <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                     <thead>
@@ -401,14 +412,14 @@
                 <tbody>
                     @foreach (var item in Model.results)
                     {
-                        <tr class="has-text-centered">
+                        <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Order_Id)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Serial_Number)
                             </td>
-                            <td>
+                            <td class="has-text-right">
                                 @Html.DisplayFor(modelItem => item.Invoice_Number)
                             </td>
                             <td>
@@ -438,7 +449,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Product_Description)
                             </td>
-                            <td>
+                            <td class="has-text-right">
                                 @Html.DisplayFor(modelItem => item.Quantity)
                             </td>
                             <td class="has-text-right">

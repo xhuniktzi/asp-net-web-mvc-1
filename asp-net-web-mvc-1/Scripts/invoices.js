@@ -4,6 +4,8 @@ const modalSelectClient = document.getElementById('modalSelectClient');
 const btnSearchClientByName = document.getElementById('btnSearchClientByName');
 const inputNameClient = document.getElementById('inputNameClient');
 const tableClients = document.getElementById('tableClients');
+const btnSearchClientByNit = document.getElementById('btnSearchClientByNit');
+const inputNitClient = document.getElementById('inputNitClient');
 
 const btnModalBranch = document.getElementById('btnModalBranch');
 const modalSelectBranch = document.getElementById('modalSelectBranch');
@@ -52,6 +54,47 @@ btnSearchClientByName.addEventListener('click', () => {
         url = `${baseUrl}/clients/`;
     } else {
         url = `${baseUrl}/clients/findByName/${encodeURI(inputNameClient.value)}`;
+    }
+
+    fetch(url, {
+        method: 'GET'
+    })
+    .then((res) => {
+        if (res.ok) {
+            return res.json();
+        }
+    })
+    .then((res) => {
+        for (let e of res) {
+            const row = document.createElement('tr');
+            tableClients.appendChild(row);
+
+            const id = document.createElement('td');
+            id.classList.add('is-hidden');
+            id.innerText = e.client_Id;
+            row.appendChild(id);
+
+            const name = document.createElement('td');
+            name.innerText = e.name;
+            row.appendChild(name);
+
+            const nit = document.createElement('td');
+            nit.innerText = e.nit;
+            row.appendChild(nit);
+
+            row.addEventListener('click', selectClient);
+        }
+    })
+});
+
+btnSearchClientByNit.addEventListener('click', () => {
+    tableClients.querySelectorAll('*').forEach(n => n.remove());
+    let url;
+
+    if (!inputNitClient.value) {
+        url = `${baseUrl}/clients/`;
+    } else {
+        url = `${baseUrl}/clients/findByNIt/${encodeURI(inputNitClient.value)}`;
     }
 
     fetch(url, {
@@ -163,7 +206,8 @@ btnSearchProductByName.addEventListener('click', (e) => {
             row.appendChild(name);
 
             const price = document.createElement('td');
-            price.innerText = e.price;
+            price.classList.add('has-text-right');
+            price.innerText = new Intl.NumberFormat('es-GT', {style: 'currency', currency: 'GTQ'}).format(e.price);
             row.appendChild(price);
 
             row.addEventListener('click', selectProduct);

@@ -7,6 +7,8 @@ const tableClients = document.getElementById('tableClients');
 const hideClientId = document.getElementById('hideClientId');
 const ClientName = document.getElementById('ClientName');
 const ClientNit = document.getElementById('ClientNit');
+const btnSearchClientByNit = document.getElementById('btnSearchClientByNit');
+const inputNitClient = document.getElementById('inputNitClient');
 
 const btnModalProduct = document.getElementById('btnModalProduct');
 const modalSelectProduct = document.getElementById('modalSelectProduct');
@@ -53,6 +55,47 @@ btnSearchClientByName.addEventListener('click', () => {
         url = `${baseUrl}/clients/`;
     } else {
         url = `${baseUrl}/clients/findByName/${encodeURI(inputNameClient.value)}`;
+    }
+
+    fetch(url, {
+        method: 'GET'
+    })
+    .then((res) => {
+        if (res.ok) {
+            return res.json();
+        }
+    })
+    .then((res) => {
+        for (let e of res) {
+            const row = document.createElement('tr');
+            tableClients.appendChild(row);
+
+            const id = document.createElement('td');
+            id.classList.add('is-hidden');
+            id.innerText = e.client_Id;
+            row.appendChild(id);
+
+            const name = document.createElement('td');
+            name.innerText = e.name;
+            row.appendChild(name);
+
+            const nit = document.createElement('td');
+            nit.innerText = e.nit;
+            row.appendChild(nit);
+
+            row.addEventListener('click', selectClient);
+        }
+    })
+});
+
+btnSearchClientByNit.addEventListener('click', () => {
+    tableClients.querySelectorAll('*').forEach(n => n.remove());
+    let url;
+
+    if (!inputNitClient.value) {
+        url = `${baseUrl}/clients/`;
+    } else {
+        url = `${baseUrl}/clients/findByNIt/${encodeURI(inputNitClient.value)}`;
     }
 
     fetch(url, {
