@@ -1,3 +1,7 @@
 ﻿td, tr {
     white-space: nowrap;
 }
+
+.card {
+    height: 100% !important;
+}
