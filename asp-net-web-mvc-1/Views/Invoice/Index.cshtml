@@ -119,7 +119,7 @@
 @using (Html.BeginForm("Index", "Invoice", null, FormMethod.Post, new { id = "InvoiceForm", autocomplete = "off" }))
 {
     <div class="box columns is-vcentered">
-        <p class="column is-one-third has-text-centered">Total de la factura @Html.DisplayFor(m => m.Total)</p>
+        <p class="column is-one-third has-text-centered has-text-weight-bold">Total de la factura @Html.DisplayFor(m => m.Total)</p>
         <p class="column is-one-third has-text-centered">
             <input type="submit" class="button is-success is-rounded" value="Crear Factura"/>
         </p>
@@ -368,6 +368,14 @@
                                     </td>
                                 </tr>
                             }
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="has-text-weight-bold">Total</td>
+                                <td class="has-text-right">@Html.DisplayFor(m => m.Total)</td>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

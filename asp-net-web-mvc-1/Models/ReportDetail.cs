@@ -18,7 +18,16 @@ namespace asp_net_web_mvc_1.Models
         public int Branch_Id { get; set; }
         public string Branch_Name { get; set; }
         public string Branch_Direction { get; set; }
-        public String Order_Date { get; set; }
+        //public String Order_Date { get; set; }
+
+        private string _orderDate;
+
+        public string Order_Date
+        {
+            get { return _orderDate.Split('T')[0]; }
+            set { _orderDate = value; }
+        }
+
         public int Product_Id { get; set; }
         public string Product_Code { get; set; }
         public string Product_Name { get; set; }

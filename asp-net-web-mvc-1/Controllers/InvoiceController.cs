@@ -58,6 +58,21 @@ namespace asp_net_web_mvc_1.Controllers
                 model.BranchDirection = branch.Direction;
             }
 
+            if (productCode == "" && quantity == null)
+            {
+                if (Session["PRODUCTS"] != null)
+                {
+                    TempData["Error"] = "No seleccionaste un producto";
+                    model.details = Session["PRODUCTS"] as List<InvoiceDetail>;
+                    return View(model);
+                }
+                else
+                {
+                    TempData["Error"] = "No seleccionaste un producto";
+                    return View(model);
+                }
+            }
+
             if (!productCode.IsNullOrEmptyOrWhiteSpace() && quantity == null)
             {
                 if (Session["PRODUCTS"] != null)
@@ -225,6 +240,7 @@ namespace asp_net_web_mvc_1.Controllers
 
                 Session.Clear();
 
+                TempData["Success"] = $"Factura creada correctamente";
                 return RedirectToAction("Index");
             }
             catch (ApiException ex)
