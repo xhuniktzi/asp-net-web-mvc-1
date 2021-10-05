@@ -410,6 +410,7 @@
                         <th>
                             Total de la Orden
                         </th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -463,6 +464,9 @@
                             </td>
                             <td class="has-text-right">
                                 @Html.DisplayFor(modelItem => item.Order_Total)
+                            </td>
+                            <td class="has-text-centered">
+                                @Html.ActionLink("Imprimir Factura", "GetInvoice", "Print", new { id = item.Order_Id }, new { @class = "button is-small is-link is-rounded" })
                             </td>
                         </tr>
                     }

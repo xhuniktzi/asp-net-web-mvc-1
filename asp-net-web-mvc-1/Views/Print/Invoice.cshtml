@@ -1,0 +1,148 @@
+﻿@model asp_net_web_mvc_1.Models.Print
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+          font-family: Arial, Helvetica, sans-serif;
+          padding: 4.6rem;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .invoice-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .detail-title {
+            margin-top: 2rem;
+        }
+
+        .Logo {
+            font-size: 48px;
+        }
+
+    </style>
+</head>
+    <body>
+    @*<div class="container">*@
+        <div class="invoice-head">
+            <p class="Logo">Logo</p>
+            <h1>Factura</h1>
+            <div class="invoice-data">
+                <p><span class="bold">Serie:</span> <span>@Html.DisplayFor(item => item.Serial_Number)</span></p>
+                <p><span class="bold">Numero:</span> <span>@Html.DisplayFor(item => item.Invoice_Number)</span></p>
+            </div>
+        </div>
+        <table>
+            <tr>
+                <td class="right"><span class="bold">Fecha:</span>
+                @Html.DisplayFor(item => item.Order_Date)</td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td class="center">
+                    <span class="bold">Cliente:</span>
+                    @Html.DisplayFor(item => item.Client_Name)
+                </td>
+                <td class="center">
+                    <span class="bold">Dirección:</span>
+                    @Html.DisplayFor(item => item.Client_Direction)
+                </td>
+                <td class="center">
+                    <span class="bold">Nit:</span>
+                    @Html.DisplayFor(item => item.Client_Nit)
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td class="center">
+                    <span class="bold">Sucursal:</span>
+                    @Html.DisplayFor(item => item.Branch_Name)
+                </td>
+                <td class="center">
+                    <span class="bold">Dirección:</span>
+                    @Html.DisplayFor(item => item.Branch_Direction)
+                </td>
+            </tr>
+        </table>
+
+        <p class="center bold detail-title">Detalle de productos</p>
+
+        <table>
+            <thead>
+                <tr class="center bold">
+                    <td>Codigo</td>
+                    <td>Producto</td>
+                    <td>Cantidad</td>
+                    <td>Precio Unitario</td>
+                    <td>Total</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Product_Detail)
+            {
+                    <tr>
+                        <td class="center">@Html.DisplayFor(m => item.Product_Code)</td>
+                        <td class="center">@Html.DisplayFor(m => item.Product_Name)</td>
+                        <td class="right">@Html.DisplayFor(m => item.Quantity)</td>
+                        <td class="right">@Html.DisplayFor(m => item.Price)</td>
+                        <td class="right">@Html.DisplayFor(m => item.Total)</td>
+                    </tr>
+                }
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="bold class=" center"">Total</td>
+                    <td class="right">@Html.DisplayFor(m => m.Total)</td>
+                </tr>
+            </tbody>
+        </table>
+    @*</div>*@
+    </body>
+</html>

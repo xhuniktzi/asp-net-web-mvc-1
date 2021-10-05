@@ -49,6 +49,10 @@
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Select.HtmlToPdf, Version=21.1.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
+      <HintPath>..\packages\Select.HtmlToPdf.21.1.0\lib\net40\Select.HtmlToPdf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -179,6 +183,7 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
+    <Compile Include="Controllers\PrintController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="ErrorHandling\ApiException.cs" />
@@ -192,6 +197,8 @@
     <Compile Include="Models\InvoiceDetail.cs" />
     <Compile Include="Models\InvoiceDetailDto.cs" />
     <Compile Include="Models\InvoiceDto.cs" />
+    <Compile Include="Models\Print.cs" />
+    <Compile Include="Models\PrintDetail.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\ReportDetail.cs" />
@@ -255,6 +262,7 @@
     <Content Include="Views\Client\Delete.cshtml" />
     <Content Include="Views\Report\Index.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Print\Invoice.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
